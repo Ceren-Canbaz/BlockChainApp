@@ -7,7 +7,7 @@ namespace BlockChainAppMvc.Models
 {
 	public class Wallet
 	{
-		public int Id { get; set; }
+		public int id { get; set; }
 		public double balance { get; set; }
 	}
 }
