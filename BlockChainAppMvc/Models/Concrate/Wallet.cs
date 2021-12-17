@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace BlockChainAppMvc.Models
 {
-	public class Wallet
-	{
-		public int Id { get; set; }
-		public double balance { get; set; }
-	}
+    public class Wallet
+    {
+        public int id { get; set; }
+        public double balance { get; set; }
+    }
 }
