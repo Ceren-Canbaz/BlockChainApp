@@ -15,7 +15,6 @@ using Core.Utilities.Security.Encyption;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using Core.Utilities.Security.Encyption;
 using Core.Utilities.Security.Jwt;
 using TokenOptions = Core.Utilities.Security.Jwt.TokenOptions;
 

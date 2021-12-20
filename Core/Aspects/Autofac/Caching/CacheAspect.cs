@@ -15,6 +15,7 @@ namespace Core.Aspects.Autofac.Caching
         private int _duration;
         private ICacheManager _cacheManager;
 
+  
         public CacheAspect(int duration = 60)
         {
             _duration = duration;

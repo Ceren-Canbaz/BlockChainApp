@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BlockChainAppMvc.EntityFrameWorkConfig
 {
-    public class BockChainAppContext : DbContext
+    public class BlockChainAppContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -16,8 +16,9 @@ namespace BlockChainAppMvc.EntityFrameWorkConfig
         public DbSet<OperationClaim> OperationClaims { get; set; }
 
         public DbSet<Coin> Coins { get; set; }
+		public DbSet<Wallet> Wallets { get; set; }
 
 
-    }
+	}
 }
 

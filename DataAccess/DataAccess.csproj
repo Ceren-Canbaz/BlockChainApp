@@ -18,11 +18,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Abstract\" />
-		<Folder Include="Concrate\EntityFramework\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\Core\Core.csproj" />
 	</ItemGroup>
 
