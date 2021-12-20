@@ -35,6 +35,7 @@ namespace BlockChainAppMvc
         {
             services.AddControllersWithViews();
             services.AddCors();
+            services.AddSwaggerGen();
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -75,6 +76,13 @@ namespace BlockChainAppMvc
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseStaticFiles();
 
