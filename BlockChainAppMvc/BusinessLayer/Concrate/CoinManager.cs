@@ -12,6 +12,7 @@ namespace BusinessLayer.Concrate
 {
 	class CoinManager : ICoinService
 	{
+		//ALT KATMANIN İNTERFACE İ !!!
 		private ICoinDao _coinDao;
 
 		public CoinManager(ICoinDao coinDao)
