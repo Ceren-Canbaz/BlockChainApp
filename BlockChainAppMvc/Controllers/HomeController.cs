@@ -1,4 +1,5 @@
-﻿using BlockChainAppMvc.Models;
+﻿using BlockChainAppMvc.Business_Layer.Abstract;
+using BlockChainAppMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,6 +14,13 @@ namespace BlockChainAppMvc.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
+
+		private IUserService _userService;
+
+		public HomeController(IUserService userService)
+		{
+			_userService = userService;
+		}
 
 		public HomeController(ILogger<HomeController> logger)
 		{
