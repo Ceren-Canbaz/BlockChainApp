@@ -29,6 +29,7 @@ namespace BlockChainAppMvc.DataAccessLayer.Concrate.EntityFramework
                                  Balance = w.balance,
                                  ToVerify = w.toVerify,
                                  WalletId = w.id,
+                                 
                               
                              };
                 return filter == null ? result.ToList() : result.Where(filter).ToList();

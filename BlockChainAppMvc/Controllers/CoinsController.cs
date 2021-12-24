@@ -11,7 +11,7 @@ namespace BlockChainAppMvc.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class CoinsController : ControllerBase
-    {
+	{
 
         private ICoinService _coinService;
 
@@ -19,17 +19,17 @@ namespace BlockChainAppMvc.Controllers
         {
             _coinService = coinService;
         }
-
+		
         [HttpGet("/getall")]
         public IActionResult getAll()
         {
             var result = _coinService.GetAll();
             if (result.Success)
-            {
+		{
                 return Ok(200);
-            }
+		}
 
             return BadRequest();
         }
-    }
+	}
 }
