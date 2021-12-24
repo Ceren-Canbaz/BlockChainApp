@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace BlockChainAppMvc.Business_Layer.Concrate
 {
-	public class UserManager : IUserService
-	{
+    public class UserManager : IUserService
+    {
         private IUserDao _userDal;
 
         public UserManager(IUserDao userDal)
@@ -48,6 +48,10 @@ namespace BlockChainAppMvc.Business_Layer.Concrate
         }
 
 
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userDal.GetClaims(user);
+        }
 
         public IDataResult<User> GetByMailData(string email)
         {
@@ -61,7 +65,7 @@ namespace BlockChainAppMvc.Business_Layer.Concrate
 
 
 
-        
+
 
     }
 }

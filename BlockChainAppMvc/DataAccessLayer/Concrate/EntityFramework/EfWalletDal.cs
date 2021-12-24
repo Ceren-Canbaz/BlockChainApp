@@ -8,13 +8,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlockChainAppMvc.DataAccessLayer.Concrate.EntityFramework
 {
-	public class EfWalletDal : EfEntityRepositoryBase<Wallet, BlockChainAppContext>, IWalletDao
-	{
-		public List<WalletDto> getAllWalletDtos(Expression<Func<WalletDto, bool>> filter = null)
-		{
+    public class EfWalletDal : EfEntityRepositoryBase<Wallet, BlockChainAppContext>, IWalletDao
+    {
+        public List<WalletDto> getAllWalletDtos(Expression<Func<WalletDto, bool>> filter = null)
+        {
 
             using (BlockChainAppContext context = new BlockChainAppContext())
             {
@@ -29,11 +30,21 @@ namespace BlockChainAppMvc.DataAccessLayer.Concrate.EntityFramework
                                  Balance = w.balance,
                                  ToVerify = w.toVerify,
                                  WalletId = w.id,
-                                 
-                              
+
+
                              };
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
         }
-	}
+
+        public List<Wallet> geTWalletsCoin(Expression<Func<Wallet, bool>> filter = null)
+        {
+            using (BlockChainAppContext context = new BlockChainAppContext())
+            {
+                var result = context.Wallets.Include(w => w.Coins).ToList();
+                return result.ToList();
+            }
+
+        }
+    }
 }

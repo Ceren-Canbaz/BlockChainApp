@@ -8,8 +8,9 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-	public interface IUserDao : IEntityRepository<User>
-	{
-		List<UserDto> getAllUserDtos(Expression<Func<UserDto, bool>> filter = null);
-	}
+    public interface IUserDao : IEntityRepository<User>
+    {
+        List<UserDto> getAllUserDtos(Expression<Func<UserDto, bool>> filter = null);
+        List<OperationClaim> GetClaims(User user);
+    }
 }

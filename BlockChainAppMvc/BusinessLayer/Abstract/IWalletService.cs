@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 
 namespace BlockChainAppMvc.Business_Layer.Abstract
 {
-	public interface IWalletService
-	{
+    public interface IWalletService
+    {
         IDataResult<List<Wallet>> GetAll();
         IDataResult<Wallet> GetById(int walletId);
         IResult Add(Wallet wallet);
         IResult Delete(Wallet wallet);
         IResult Update(Wallet wallet);
 
-		IDataResult<List<WalletDto>> GetAllDetails();
-		IDataResult<List<WalletDto>> GetAllDetailsByUserId(int userId);
-		IDataResult<List<WalletDto>> GetVerifiedDetailsByUserId(int userId);
+        IDataResult<List<WalletDto>> GetAllDetails();
+        IDataResult<List<WalletDto>> GetAllDetailsByUserId(int userId);
+        IDataResult<List<WalletDto>> GetVerifiedDetailsByUserId(int userId);
 
-		IResult VerifyWallet(Wallet wallet);
+        IResult VerifyWallet(Wallet wallet);
 
-      
+        IResult AddCoinToWallet();
         IDataResult<Wallet> GetByUserId(int userId);
 
     }

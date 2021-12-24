@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace BlockChainAppMvc.Business_Layer.Abstract
 {
-	public interface IUserService
-	{
-		IDataResult<List<User>> GetAll();
-		IDataResult<User> Get(int userId);
+    public interface IUserService
+    {
+        IDataResult<List<User>> GetAll();
+        IDataResult<User> Get(int userId);
+        List<OperationClaim> GetClaims(User user);
+        IResult Add(User User);
+        IResult Delete(User user);
+        IResult Update(User user);
 
-		IResult Add(User User);
-		IResult Delete(User user);
-		IResult Update(User user);
+        IDataResult<User> GetByMailData(string email);
+        User GetByMail(string email);
 
-		IDataResult<User> GetByMailData(string email);
-		User GetByMail(string email);
-
-		//IDataResult<List<UserDto>> getAllUserDto();
-		//IDataResult<List<UserDto>> GetUserDtoByMail(string email);
-	}
+        //IDataResult<List<UserDto>> getAllUserDto();
+        //IDataResult<List<UserDto>> GetUserDtoByMail(string email);
+    }
 }

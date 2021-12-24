@@ -8,17 +8,15 @@ using BlockChainAppMvc.Business_Layer.Concrate;
 using BlockChainAppMvc.DataAccessLayer.Abstract;
 using BlockChainAppMvc.DataAccessLayer.Concrate.EntityFramework;
 using Business.Abstract;
+using Business.Concrate;
+using Business.Concrete;
 using BusinessLayer.Concrate;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.Jwt;
 using DataAccess.Abstract;
 using DataAccess.Concrate.EntityFramework;
-
-//using Core.Utilities.Interceptors;
-//using Core.Utilities.Security.Jwt;
-//using DataAccess.Abstract;
-//using DataAccess.Concrate.EntityFramework;
-//using DataAccess.Concrate.EntityFrameWork;
+using DataAccess.Concrate.EntityFrameWork;
 
 namespace Business.DependencyResolvers.AutoFac
 {
@@ -26,30 +24,26 @@ namespace Business.DependencyResolvers.AutoFac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
-            //builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
 
 
+            builder.RegisterType<OperationClaimManager>().As<IOperationClaimService>().SingleInstance();
+            builder.RegisterType<EfOperationClaimDal>().As<IOperationClaimDal>().SingleInstance();
 
-
-            //builder.RegisterType<OperationClaimManager>().As<IOperationClaimService>().SingleInstance();
-            //builder.RegisterType<EfOperationClaimDal>().As<IOperationClaimDal>().SingleInstance();
-
-            //builder.RegisterType<UserOperationClaimManager>().As<IUserOperationClaimService>().SingleInstance();
-            //builder.RegisterType<EfUserOperationClaimDal>().As<IUserOperationClaimDal>().SingleInstance();
+            builder.RegisterType<UserOperationClaimManager>().As<IUserOperationClaimService>().SingleInstance();
+            builder.RegisterType<EfUserOperationClaimDal>().As<IUserOperationClaimDal>().SingleInstance();
 
             builder.RegisterType<CoinManager>().As<ICoinService>().SingleInstance();
             builder.RegisterType<EfCoinDal>().As<ICoinDao>().SingleInstance();
 
 
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
-           // builder.RegisterType<EfUserDal>().As<IUserDao>().SingleInstance();
+            builder.RegisterType<EfUserDal>().As<IUserDao>().SingleInstance();
 
             builder.RegisterType<WalletManager>().As<IWalletService>().SingleInstance();
             builder.RegisterType<EfWalletDal>().As<IWalletDao>().SingleInstance();
 
-            //builder.RegisterType<AuthManager>().As<IAuthService>();
-            //builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
