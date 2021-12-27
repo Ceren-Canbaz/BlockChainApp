@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BlockChainAppMvc.Models.Coin>
+
+@{
+    ViewData["Title"] = "CoinsList";
+}
+
+
+<div class="container mt-2">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.coinName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.coinValue)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.changePerDay)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.coinName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.coinValue)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.changePerDay)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.coinId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.coinId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.coinId">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>
+

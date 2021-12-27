@@ -4,11 +4,12 @@ using System.Text;
 using BlockChainAppMvc.Business_Layer.Abstract;
 using Business.Abstract;
 using Business.Constants;
-using Core.Entities.Concrate;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.Jwt;
 using Entities.DTOs;
+using Core.Entities.Concrate;
+
 
 namespace Business.Concrete
 {
@@ -27,7 +28,7 @@ namespace Business.Concrete
         {
             byte[] passwordHash, passwordSalt;
             HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
-            var user = new User
+            var user = new User()
             {
                 Email = userForRegisterDto.Email,
                 Name = userForRegisterDto.Name,

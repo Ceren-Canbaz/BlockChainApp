@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+
 using Core.Entities;
 
 namespace Core.Entities.Concrate
@@ -19,5 +20,7 @@ namespace Core.Entities.Concrate
         public string TcNo { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+
+        public Wallet Wallet { get; set; }
     }
 }

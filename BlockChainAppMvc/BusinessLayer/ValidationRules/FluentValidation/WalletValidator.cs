@@ -11,7 +11,7 @@ namespace BlockChainAppMvc.Business_Layer.ValidationRules.FluentValidation
     {
         public WalletValidator()
         {
-            RuleFor(w => w.id).NotEmpty();
+            RuleFor(w => w.walletId).NotEmpty();
         }
     }
 }

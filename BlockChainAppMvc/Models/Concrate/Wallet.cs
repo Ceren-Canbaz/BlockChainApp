@@ -1,30 +1,25 @@
 ﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Entities.BlockChain.Entities;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace BlockChainAppMvc.Models
 {
     public class Wallet : IEntity
     {
-
-        //Coinler listesini oluştur.
-
-        //Coin işlemleri eklenecek.
-
-        //Chaine dahil edilecek.
-
         public Wallet()
         {
-            Coins = new List<Coin>();
+            Blockchains = new List<Blockchain>();
         }
-
-        public int id { get; set; }
+        public int walletId { get; set; }
         public decimal balance { get; set; }
         public int userId { get; set; }
-
-        public List<Coin> Coins { get; set; }
         public bool toVerify { get; set; }
+        public List<Blockchain> Blockchains { get; set; }
     }
 }

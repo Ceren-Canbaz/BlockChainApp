@@ -1,11 +1,5 @@
 ﻿@model IEnumerable<BlockChainAppMvc.Models.Coin>
 
-@{
-    ViewData["Title"] = "getAll";
-}
-
-<h1>getAll</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -21,7 +15,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.changePerDay)
             </th>
-
             <th></th>
         </tr>
     </thead>
@@ -39,9 +32,9 @@
                     @Html.DisplayFor(modelItem => item.changePerDay)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.coinId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.coinId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.coinId">Delete</a>
                 </td>
             </tr>
         }

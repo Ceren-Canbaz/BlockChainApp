@@ -14,37 +14,47 @@ namespace BlockChainAppMvc.DataAccessLayer.Concrate.EntityFramework
 {
     public class EfWalletDal : EfEntityRepositoryBase<Wallet, BlockChainAppContext>, IWalletDao
     {
-        public List<WalletDto> getAllWalletDtos(Expression<Func<WalletDto, bool>> filter = null)
-        {
+        //public List<WalletDto> getAllWalletDtos(Expression<Func<WalletDto, bool>> filter = null)
+        //{
 
+        //    using (BlockChainAppContext context = new BlockChainAppContext())
+        //    {
+        //        var result = from w in context.Wallets
+        //                     join u in context.Users
+        //                         on w.userId equals u.Id
+        //                     select new WalletDto()
+        //                     {
+        //                         UserId = w.userId,
+        //                         UserName = u.Name,
+        //                         UserLastName = u.LastName,
+        //                         Balance = w.balance,
+        //                         ToVerify = w.toVerify,
+        //                         WalletId = w.walletId,
+
+
+        //                     };
+        //        return filter == null ? result.ToList() : result.Where(filter).ToList();
+        //    }
+        //}
+
+
+        //public List<WalletCoin> getAllWalletDtos(Expression<Func<WalletDto, bool>> filter = null)
+        //{
+
+
+        //}
+
+        public List<Wallet> getWalletWithChains(Expression<Func<Wallet, bool>> filter = null)
+        {
             using (BlockChainAppContext context = new BlockChainAppContext())
             {
-                var result = from w in context.Wallets
-                             join u in context.Users
-                                 on w.userId equals u.Id
-                             select new WalletDto()
-                             {
-                                 UserId = w.userId,
-                                 UserName = u.Name,
-                                 UserLastName = u.LastName,
-                                 Balance = w.balance,
-                                 ToVerify = w.toVerify,
-                                 WalletId = w.id,
+                context.BlockChains.Include(b => b.Blocks).ToList();
+                var result = context.Wallets.Include(w => w.Blockchains).ToList();
 
 
-                             };
-                return filter == null ? result.ToList() : result.Where(filter).ToList();
+                return result;
             }
-        }
-
-        public List<Wallet> geTWalletsCoin(Expression<Func<Wallet, bool>> filter = null)
-        {
-            using (BlockChainAppContext context = new BlockChainAppContext())
-            {
-                var result = context.Wallets.Include(w => w.Coins).ToList();
-                return result.ToList();
-            }
-
         }
     }
 }
+
