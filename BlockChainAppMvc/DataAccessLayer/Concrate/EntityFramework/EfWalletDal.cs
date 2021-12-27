@@ -29,7 +29,7 @@ namespace BlockChainAppMvc.DataAccessLayer.Concrate.EntityFramework
                                  UserLastName = u.LastName,
                                  Balance = w.balance,
                                  ToVerify = w.toVerify,
-                                 WalletId = w.id,
+                                  id = w.id,
 
 
                              };
@@ -39,12 +39,11 @@ namespace BlockChainAppMvc.DataAccessLayer.Concrate.EntityFramework
 
         public List<Wallet> geTWalletsCoin(Expression<Func<Wallet, bool>> filter = null)
         {
-            using (BlockChainAppContext context = new BlockChainAppContext())
+          using (BlockChainAppContext context = new BlockChainAppContext())
             {
                 var result = context.Wallets.Include(w => w.Coins).ToList();
                 return result.ToList();
             }
-
         }
     }
 }

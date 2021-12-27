@@ -34,13 +34,20 @@ namespace BlockChainAppMvc
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddSession(option =>
+            {
+                //Süre 1 dk olarak belirlendi
+                option.IdleTimeout = TimeSpan.FromMinutes(15);
+            });
+            services.AddMvc();
+
             services.AddControllersWithViews();
             services.AddCors();
             services.AddMvc().AddNewtonsoftJson(opt =>
             {
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
-
+          
             services.AddSwaggerGen();
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -80,10 +87,8 @@ namespace BlockChainAppMvc
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
-
-            app.UseSwagger();
 
             app.UseSwaggerUI(c =>
             {

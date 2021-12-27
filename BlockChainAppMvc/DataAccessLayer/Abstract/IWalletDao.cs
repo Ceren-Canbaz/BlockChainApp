@@ -12,6 +12,7 @@ namespace BlockChainAppMvc.DataAccessLayer.Abstract
     public interface IWalletDao : IEntityRepository<Wallet>
     {
         List<WalletDto> getAllWalletDtos(Expression<Func<WalletDto, bool>> filter = null);
-        List<Wallet> geTWalletsCoin(Expression<Func<Wallet, bool>> filter = null);
+      
+       List<Wallet> geTWalletsCoin(Expression<Func<Wallet, bool>> filter = null);
     }
 }

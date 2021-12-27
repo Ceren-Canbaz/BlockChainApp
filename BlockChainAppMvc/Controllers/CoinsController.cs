@@ -20,16 +20,16 @@ namespace BlockChainAppMvc.Controllers
             _coinService = coinService;
         }
 
-        //      [HttpGet("/getall")]
-        //      public IActionResult getAll()
-        //      {
-        //          var result = _coinService.GetAll();
-        //          if (result.Success)
+      //[HttpGet("/getall")]
+        //public IActionResult getall()
         //{
-        //              return Ok(result);
-        //}
+        //    var result = _coinService.GetAll();
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
 
-        //          return BadRequest();
-        //      }
+        //    return BadRequest();
+        //}
     }
 }

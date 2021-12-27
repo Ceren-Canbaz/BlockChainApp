@@ -13,6 +13,6 @@ namespace BlockChainAppMvc.Models.DTOs
         public string UserLastName { get; set; }
         public decimal Balance { get; set; }
         public bool ToVerify { get; set; }
-        public int WalletId { get; set; }
+        public int id { get; set; }
     }
 }
