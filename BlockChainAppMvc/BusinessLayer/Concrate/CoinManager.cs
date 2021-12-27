@@ -10,39 +10,39 @@ using System.Text;
 
 namespace BusinessLayer.Concrate
 {
-	class CoinManager : ICoinService
-	{
-		//ALT KATMANIN İNTERFACE İ !!!
-		private ICoinDao _coinDao;
+    class CoinManager : ICoinService
+    {
+        //ALT KATMANIN İNTERFACE İ !!!
+        private ICoinDao _coinDao;
 
-		public CoinManager(ICoinDao coinDao)
-		{
-			_coinDao = coinDao;
-		}
+        public CoinManager(ICoinDao coinDao)
+        {
+            _coinDao = coinDao;
+        }
 
-		public IResult Add(Coin coin)
-		{
-			throw new NotImplementedException();
-		}
+        public IResult Add(Coin coin)
+        {
+            throw new NotImplementedException();
+        }
 
-		public IResult Delete(Coin coin)
-		{
-			throw new NotImplementedException();
-		}
+        public IResult Delete(Coin coin)
+        {
+            throw new NotImplementedException();
+        }
 
-		public IDataResult<List<Coin>> GetAll()
-		{
-			return new SuccessDataResult<List<Coin>>(_coinDao.GetAll(),"Coins Listed !");
-		}
+        public IDataResult<List<Coin>> GetAll()
+        {
+            return new SuccessDataResult<List<Coin>>(_coinDao.GetAll(), "Coins Listed !");
+        }
 
-		public IDataResult<Coin> GetById(int coinId)
-		{
-			return new SuccessDataResult<Coin>(_coinDao.Get(c => c.id == coinId));
-		}
+        public IDataResult<Coin> GetById(int coinId)
+        {
+            return new SuccessDataResult<Coin>(_coinDao.Get(c => c.coinId == coinId));
+        }
 
-		public IResult Update(Coin coin)
-		{
-			throw new NotImplementedException();
-		}
-	}
+        public IResult Update(Coin coin)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -12,7 +12,7 @@ namespace BlockChainAppMvc.DataAccessLayer.Abstract
 {
     public interface ICoinDao : IEntityRepository<Coin>
     {
-        //List<CoinDto> getCoinDtos(Expression<Func<CoinDto, bool>> filter = null);
+
 
     }
 }

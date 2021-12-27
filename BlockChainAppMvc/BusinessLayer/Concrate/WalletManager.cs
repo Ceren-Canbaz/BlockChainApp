@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace BlockChainAppMvc.Business_Layer.Concrate
 {
 
@@ -38,30 +39,30 @@ namespace BlockChainAppMvc.Business_Layer.Concrate
             return new SuccessResult(message: "Wallet Deleted");
         }
 
-        [CacheAspect(10)]
+
+
+
         public IDataResult<List<Wallet>> GetAll()
         {
-            return new SuccessDataResult<List<Wallet>>(_walletDal.geTWalletsCoin());
-        }
-
-        [CacheAspect(10)]
-        public IDataResult<List<WalletDto>> GetAllDetails()
-        {
-            return new SuccessDataResult<List<WalletDto>>(_walletDal.getAllWalletDtos());
-        }
+            return new SuccessDataResult<List<Wallet>>(_walletDal.getWalletWithChains());
+        }       //[CacheAspect(10)]
+        //public IDataResult<List<WalletDto>> GetAllDetails()
+        //{
+        //    return new SuccessDataResult<List<WalletDto>>(_walletDal.getAllWalletDtos());
+        //}
 
 
-        [CacheAspect(10)]
-        public IDataResult<List<WalletDto>> GetAllDetailsByUserId(int userId)
-        {
-            return new SuccessDataResult<List<WalletDto>>(_walletDal.getAllWalletDtos(w => w.UserId == userId));
-        }
+        //[CacheAspect(10)]
+        //public IDataResult<List<WalletDto>> GetAllDetailsByUserId(int userId)
+        //{
+        //    return new SuccessDataResult<List<WalletDto>>(_walletDal.get(w => w.UserId == userId));
+        //}
 
 
         [CacheAspect(10)]
         public IDataResult<Wallet> GetById(int walletId)
         {
-            return new SuccessDataResult<Wallet>(_walletDal.Get(w => w.id == walletId));
+            return new SuccessDataResult<Wallet>(_walletDal.Get(w => w.walletId == walletId));
         }
 
 
@@ -76,10 +77,10 @@ namespace BlockChainAppMvc.Business_Layer.Concrate
             return new SuccessDataResult<Wallet>(_walletDal.Get(w => w.userId == userId));
         }
 
-        public IDataResult<List<WalletDto>> GetVerifiedDetailsByUserId(int userId)
-        {
-            return new SuccessDataResult<List<WalletDto>>(_walletDal.getAllWalletDtos(w => w.ToVerify == true && w.UserId == userId));
-        }
+        //public IDataResult<List<WalletDto>> GetVerifiedDetailsByUserId(int userId)
+        //{
+        //    return new SuccessDataResult<List<WalletDto>>(_walletDal.getAllWalletDtos(w => w.ToVerify == true && w.UserId == userId));
+        //}
 
         public IResult Update(Wallet wallet)
         {

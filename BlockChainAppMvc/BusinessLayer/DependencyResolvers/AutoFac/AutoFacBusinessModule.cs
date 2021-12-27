@@ -5,6 +5,8 @@ using Autofac;
 using Autofac.Extras.DynamicProxy;
 using BlockChainAppMvc.Business_Layer.Abstract;
 using BlockChainAppMvc.Business_Layer.Concrate;
+using BlockChainAppMvc.BusinessLayer.Abstract;
+using BlockChainAppMvc.BusinessLayer.Concrate;
 using BlockChainAppMvc.DataAccessLayer.Abstract;
 using BlockChainAppMvc.DataAccessLayer.Concrate.EntityFramework;
 using Business.Abstract;
@@ -35,12 +37,19 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<CoinManager>().As<ICoinService>().SingleInstance();
             builder.RegisterType<EfCoinDal>().As<ICoinDao>().SingleInstance();
 
+            builder.RegisterType<BlockManager>().As<IBlockService>().SingleInstance();
+            builder.RegisterType<EfBlockDal>().As<IBlockDao>().SingleInstance();
+
+            builder.RegisterType<BlockChainManager>().As<IBlockChainService>().SingleInstance();
+            builder.RegisterType<EfBlockChainDal>().As<IBlockChainDao>().SingleInstance();
 
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EfUserDal>().As<IUserDao>().SingleInstance();
 
             builder.RegisterType<WalletManager>().As<IWalletService>().SingleInstance();
             builder.RegisterType<EfWalletDal>().As<IWalletDao>().SingleInstance();
+
+
 
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();

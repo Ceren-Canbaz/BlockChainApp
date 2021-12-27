@@ -23,7 +23,11 @@
         </thead>
 
         <tbody>
+<<<<<<< HEAD
 @foreach (var item in Model)
+=======
+            @foreach (var item in Model)
+>>>>>>> 27953fbcf963b8fe372397692ed6f9b8a216826a
             {
                 <tr>
                     <td>
@@ -36,9 +40,15 @@
                         @Html.DisplayFor(modelItem => item.changePerDay)
                     </td>
                     <td>
+<<<<<<< HEAD
                         <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.id">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+=======
+                        <a asp-action="Edit" asp-route-id="@item.coinId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.coinId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.coinId">Delete</a>
+>>>>>>> 27953fbcf963b8fe372397692ed6f9b8a216826a
                     </td>
                 </tr>
             }

@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 ﻿@model IEnumerable<BlockChainAppMvc.Models.Coin>
 @{
     var coins = Model;
+=======
+﻿
+@{
+>>>>>>> 27953fbcf963b8fe372397692ed6f9b8a216826a
     ViewBag.Title = "Trade";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
@@ -11,6 +16,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">SATIN AL</h5>
+<<<<<<< HEAD
                     <p class="card-text">Almak istediğiniz coini ve miktarını seçiniz.</p>
                     <div class="input-group">
                        
@@ -39,6 +45,17 @@
                         
 
                         @*<button class="btn btn-outline-secondary" type="submit" onclick="alert('İşleminiz gerçekleşti!'); return true">BUY</button>*@
+=======
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <div class="input-group">
+                        <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <button class="btn btn-outline-secondary" type="button" onclick="alert('İşleminiz gerçekleşti!'); return true">BUY</button>
+>>>>>>> 27953fbcf963b8fe372397692ed6f9b8a216826a
                     </div>
                 </div>
             </div>
@@ -47,6 +64,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">SAT</h5>
+<<<<<<< HEAD
                     <p class="card-text">Satmak istediğiniz coini ve miktarını seçiniz.</p>
                     <div class="input-group">
                         <form action="/Home/CoinAmountSell" method="POST">
@@ -68,6 +86,17 @@
                             <input type="submit" value="BUY" class="btn btn-outline-secondary" />
 
                         </form>
+=======
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <div class="input-group">
+                        <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                            <option selected>Choose...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <button class="btn btn-outline-secondary" type="button" onclick="alert('İşleminiz gerçekleşti!'); return true">SALE</button>
+>>>>>>> 27953fbcf963b8fe372397692ed6f9b8a216826a
                     </div>
                 </div>
             </div>
@@ -120,6 +149,10 @@
                             </select>
                         </div>
 
+<<<<<<< HEAD
+=======
+                        <p class="results">0</p>
+>>>>>>> 27953fbcf963b8fe372397692ed6f9b8a216826a
                     </div>
                 </div>
             </div>
@@ -127,6 +160,7 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 @*<div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -166,3 +200,44 @@
             </div>
         </div>
     </div>*@
+=======
+    @*<div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-primary text-center">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Currency Converter</h4>
+                        </div>
+                        <div class="error">
+                            Please enter numeric value
+                        </div>
+                        <div class="panel-body">
+                            <form class="form-vertical">
+
+                                <div class="form-group center">
+                                    <label for="">Enter Value:</label>
+                                    <input type="number" class="amount form-control" placeholder="Enter value" min="1">
+                                </div>
+
+
+                                <div class="form-group inline-block">
+                                    <label for="">From currency:</label>
+                                    <select class="currency-list form-control" onclick="exchangeCurrency()">
+                                        <option>--Select--</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group inline-block">
+                                    <label>To currency:</label>
+                                    <select class="currency-list form-control" onclick="exchangeCurrency()">
+                                        <option>--Select--</option>
+                                    </select>
+                                </div>
+                            </form>
+                            <p class="results">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+>>>>>>> 27953fbcf963b8fe372397692ed6f9b8a216826a

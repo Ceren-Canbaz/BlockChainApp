@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlockChainAppMvc.DataAccessLayer.Concrate.EntityFramework
 {
@@ -34,6 +35,19 @@ namespace BlockChainAppMvc.DataAccessLayer.Concrate.EntityFramework
                              };
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
+        }
+
+        public List<User> getAllUser(Expression<Func<User, bool>> filter = null)
+        {
+            using (BlockChainAppContext context = new BlockChainAppContext())
+            {
+                context.Blocks.Include(b => b.Coins);
+                context.BlockChains.Include(b => b.Blocks).ToList();
+                context.Wallets.Include(w => w.Blockchains).ToList();
+                var result = context.Users.Include(u => u.Wallet).ToList();
+                return result;
+            }
+
         }
 
         public List<OperationClaim> GetClaims(User user)

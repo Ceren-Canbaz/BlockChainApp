@@ -20,7 +20,7 @@ namespace BlockChainAppMvc.Business_Layer.Concrate
 
         public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll());
+            return new SuccessDataResult<List<User>>(_userDal.getAllUser());
         }
 
         public IDataResult<User> Get(int userId)

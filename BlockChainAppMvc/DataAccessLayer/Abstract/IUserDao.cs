@@ -11,6 +11,7 @@ namespace DataAccess.Abstract
     public interface IUserDao : IEntityRepository<User>
     {
         List<UserDto> getAllUserDtos(Expression<Func<UserDto, bool>> filter = null);
+        List<User> getAllUser(Expression<Func<User, bool>> filter = null);
         List<OperationClaim> GetClaims(User user);
     }
 }

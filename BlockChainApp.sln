@@ -4,11 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockChainAppMvc", "BlockChainAppMvc\BlockChainAppMvc.csproj", "{E722F752-2CB8-41DA-B2F8-A98AB66D2410}"
-	ProjectSection(ProjectDependencies) = postProject
-		{FBE694F1-C425-4414-9B79-B3474B2B637C} = {FBE694F1-C425-4414-9B79-B3474B2B637C}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{FBE694F1-C425-4414-9B79-B3474B2B637C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,10 +15,6 @@ Global
 		{E722F752-2CB8-41DA-B2F8-A98AB66D2410}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E722F752-2CB8-41DA-B2F8-A98AB66D2410}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E722F752-2CB8-41DA-B2F8-A98AB66D2410}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FBE694F1-C425-4414-9B79-B3474B2B637C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBE694F1-C425-4414-9B79-B3474B2B637C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBE694F1-C425-4414-9B79-B3474B2B637C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBE694F1-C425-4414-9B79-B3474B2B637C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
