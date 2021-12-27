@@ -8,19 +8,22 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using BlockChainAppMvc.Models;
+using DataAccess.Abstract;
 
 namespace BlockChainAppMvc.BusinessLayer.Concrate
 {
     public class BlockManager : IBlockService
     {
-
+        private ICoinDao _coinDao;
         private IBlockDao _blockDao;
         private IBlockChainDao _blockChainDao;
 
-        public BlockManager(IBlockDao blockDao, IBlockChainDao blockChainDao)
+        public BlockManager(IBlockDao blockDao, IBlockChainDao blockChainDao, ICoinDao coinDao)
         {
             _blockDao = blockDao;
             _blockChainDao = blockChainDao;
+            _coinDao = coinDao;
         }
 
 
@@ -32,7 +35,7 @@ namespace BlockChainAppMvc.BusinessLayer.Concrate
 
         public IDataResult<List<Block>> GetAll()
         {
-            return new SuccessDataResult<List<Block>>(_blockDao.GetAll());
+            return new SuccessDataResult<List<Block>>(_blockDao.getWalletWithCoin());
         }
 
         public IDataResult<Block> GetById(int blockId)
@@ -55,13 +58,13 @@ namespace BlockChainAppMvc.BusinessLayer.Concrate
             return Convert.ToBase64String(outputBytes);
         }
 
-        public IResult FirstAdd(Block block)
+        public IResult FirstAddCoin(string data, decimal value)
         {
             Block genesis = new Block
             {
                 TimeStamp = DateTime.Now, //blockun olusturulma zamanını tutar
                 PreviousHash = null, //önceki chaindeki bloğun hashini içerir
-                Data = block.Data,
+                Data = data,
                 Hash = "",//blockun özelliklerine göre hesaplanır ve olusturulur
             };
             genesis.Hash = CalculateHash(genesis);
@@ -69,6 +72,13 @@ namespace BlockChainAppMvc.BusinessLayer.Concrate
             _blockChainDao.Add(genesisChain);
             genesis.blockChainId = genesisChain.id;
             _blockDao.Add(genesis);
+            _coinDao.Add(new Coin()
+            {
+                BlockId = genesis.id,
+                coinName = genesis.Data,
+                coinValue = value,
+
+            });
             return new SuccessResult("Başarıyla Block Oluştu");
         }
 

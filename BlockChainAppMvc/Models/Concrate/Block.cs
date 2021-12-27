@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.AccessControl;
 using System.Security.Cryptography;
 using System.Text;
+using BlockChainAppMvc.Models;
 
 namespace Core.Entities.BlockChain.Entities
 {
@@ -15,6 +16,7 @@ namespace Core.Entities.BlockChain.Entities
         public string Hash { get; set; }
         public string Data { get; set; }
         public int blockChainId { get; set; }
+        public List<Coin> Coins { get; set; }
 
     }
 }

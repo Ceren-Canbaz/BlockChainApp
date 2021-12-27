@@ -43,7 +43,7 @@ namespace BlockChainAppMvc.Controllers
         [HttpGet("/getall")]
         public IActionResult getAll()
         {
-            var result = _walletService.GetAll();
+            var result = _userService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -146,9 +146,9 @@ namespace BlockChainAppMvc.Controllers
         }
 
         [HttpPost("/addBlock")]
-        public IActionResult addBlock(Block block)
+        public IActionResult addBlock(string data, decimal value)
         {
-            var result = _blockService.FirstAdd(block);
+            var result = _blockService.FirstAddCoin(data, value);
 
             if (!result.Success)
             {
@@ -199,18 +199,18 @@ namespace BlockChainAppMvc.Controllers
             return Ok(result);
         }
 
-        [HttpPost("/addBlockGenesis")]
-        public IActionResult addBlockChainGenesis(Blockchain blockchain, Block block)
-        {
+        //[HttpPost("/addBlockGenesis")]
+        //public IActionResult addBlockChainGenesis(Blockchain blockchain, Block block)
+        //{
 
-            var result2 = _blockService.FirstAdd(block);
+        //    var result2 = _blockService.FirstAddCoin(block);
 
-            if (result2.Success)
-            {
-                return Ok(result2);
-            }
+        //    if (result2.Success)
+        //    {
+        //        return Ok(result2);
+        //    }
 
-            return BadRequest();
-        }
+        //    return BadRequest();
+        //}
     }
 }
