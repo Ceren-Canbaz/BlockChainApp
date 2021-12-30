@@ -15,8 +15,9 @@ namespace BlockChainAppMvc.Models
         public string coinName { get; set; }
         public decimal coinValue { get; set; }
         public decimal changePerDay { get; set; }
+        public int blockChainId { get; set; }
 
-        public int BlockId { get; set; }
+        public int blockId { get; set; }
 
     }
 }

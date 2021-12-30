@@ -6,28 +6,30 @@
     <title>@ViewData["Title"] - BlockChainAppMvc</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg ">
             <div class="container">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/1027/1027910.png" style="width: 50px" class="card-img-top" alt="resim bulunamad覺">
+                <a href="../Home/Index">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1027/1027910.png" style="width: 50px" class="card-img-top" alt="resim bulunamadi">
+                </a>
+               
 
                 <div class="collapse navbar-collapse" id="navbarColor02">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../Home/Index"> Home</a>
+                            <a class="nav-link active" aria-current="page" href="../Home/Index">Ana Sayfa</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../Home/CoinsList">Coinler</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link" href="../Home/Trade">Al-Sat</a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
-
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                     <button type="button" class="btn align-content-end">
                         <a href="../Home/Login" style="text-decoration:none">Giriş</a>
@@ -50,31 +52,32 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-md-3 item">
-                        <h3>Services</h3>
+                        <h3>Sayfalar</h3>
                         <ul>
-                            <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Hosting</a></li>
+                            <li><label>Ana Sayfa</label></li>
+                            <li><label>Coinler</label></li>
+                            <li><label>Giriş</label></li>
                         </ul>
                     </div>
                     <div class="col-sm-6 col-md-3 item">
-                        <h3>About</h3>
+                        <h3>İletişim</h3>
                         <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>
+                            <li><label>T:0 555 555 55 55</label></li>
+                            <li><label>C:0 444 444 44 44</label></li>
+                            <li><label>M: cbu.edu.tr@gmail.com</label></li>
                         </ul>
                     </div>
                     <div class="col-md-6 item text">
-                        <h3>Company Name</h3>
-                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                        <h3>SCUBA</h3>
+                        <p>SCUBA, bir kripto ekosisteminden çok daha fazlasıdır. Kripto tutkularının peşinden gitmek, kriptoyu desteklemek ve savunmak için gerek gerçek yaşamda gerekse İnternet ortamında bir araya gelmiş, yaşamın her alanındaki SCUBA kullanıcıları tarafından desteklenen canlı ve küresel bir topluluktur.</p>
                     </div>
-                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                    
                 </div>
-                <p class="copyright">Company Name © 2018</p>
+                <p class="copyright">SCUBA © 2021</p>
             </div>
         </footer>
     </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script>$(function () { objectFitImages() });</script>

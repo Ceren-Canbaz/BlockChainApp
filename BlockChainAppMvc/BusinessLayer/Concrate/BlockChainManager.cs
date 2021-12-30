@@ -1,5 +1,6 @@
 ﻿using BlockChainAppMvc.BusinessLayer.Abstract;
 using BlockChainAppMvc.DataAccessLayer.Abstract;
+using BlockChainAppMvc.Models;
 using Core.Entities.BlockChain.Entities;
 using Core.Utilities.Results;
 using System;
@@ -29,20 +30,23 @@ namespace BlockChainAppMvc.BusinessLayer.Concrate
             return new SuccessResult("başarıyla eklendi");
         }
 
-        public IResult AddBlock(int blockId)
+        public IResult AddBlock(int blockId, decimal amount)
         {
-
-            var latestBlock = _blockDao.Get(b => b.id == blockId - 1);
+            
+            var latestBlock = _blockDao.Get(b => b.id == blockId );
             Block newBlock = new Block
             {
-                PreviousHash = latestBlock.PreviousHash,
+                PreviousHash = latestBlock.Hash,
                 TimeStamp = DateTime.Now,
                 Data = latestBlock.Data,
-                blockChainId = latestBlock.blockChainId
+                blockChainId = latestBlock.blockChainId,
+                coinAmount = amount,
             };
             newBlock.Hash = CalculateHash(newBlock);
             _blockDao.Add(newBlock);
-            return new SuccessResult("Başarıyla eklendi");
+            latestBlock.coinAmount -= amount;
+            _blockDao.Update(latestBlock);
+            return new SuccessDataResult<Block>(newBlock, "Başarıyla eklendi");
 
         }
 
@@ -69,6 +73,11 @@ namespace BlockChainAppMvc.BusinessLayer.Concrate
         public IDataResult<Blockchain> GetById(int id)
         {
             return new SuccessDataResult<Blockchain>(_blockChainDao.Get(c => c.id == id));
+        }
+
+        public IDataResult<Blockchain> GetByWalletId(int walletId)
+        {
+            return new SuccessDataResult<Blockchain>(_blockChainDao.Get(c => c.walletId == walletId));
         }
 
         public IResult Update(Blockchain blockchain)

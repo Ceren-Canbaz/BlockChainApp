@@ -65,23 +65,42 @@ namespace BlockChainAppMvc.BusinessLayer.Concrate
                 TimeStamp = DateTime.Now, //blockun olusturulma zamanını tutar
                 PreviousHash = null, //önceki chaindeki bloğun hashini içerir
                 Data = data,
-                Hash = "",//blockun özelliklerine göre hesaplanır ve olusturulur
+                Hash = "",//blockun özelliklerine göre hesaplanır ve olusturulur,
+
             };
             genesis.Hash = CalculateHash(genesis);
-            Blockchain genesisChain = new Blockchain();
+            Blockchain genesisChain = new Blockchain
+            {
+
+            };
             _blockChainDao.Add(genesisChain);
             genesis.blockChainId = genesisChain.id;
             _blockDao.Add(genesis);
             _coinDao.Add(new Coin()
             {
-                BlockId = genesis.id,
+                blockChainId = genesis.blockChainId,
+                blockId = genesis.id,
                 coinName = genesis.Data,
-                coinValue = value,
+                coinValue = value
 
             });
             return new SuccessResult("Başarıyla Block Oluştu");
         }
 
+        public IResult AddCoin(int blockId)
+        {
+            var latestBlock = _blockDao.Get(b => b.id == blockId - 1);
+            Block newBlock = new Block
+            {
+                PreviousHash = latestBlock.PreviousHash,
+                TimeStamp = DateTime.Now,
+                Data = latestBlock.Data,
+                blockChainId = latestBlock.blockChainId
+            };
+            newBlock.Hash = CalculateHash(newBlock);
+            _blockDao.Add(newBlock);
+            return new SuccessResult("Başarıyla eklendi");
 
+        }
     }
 }

@@ -33,6 +33,11 @@ namespace BlockChainAppMvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession(option =>
+            {
+                //Süre 1 dk olarak belirlendi
+                option.IdleTimeout = TimeSpan.FromMinutes(15);
+            });
 
             services.AddControllersWithViews();
             services.AddCors();
@@ -93,6 +98,7 @@ namespace BlockChainAppMvc
             app.UseStaticFiles();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

@@ -13,6 +13,10 @@ using Entities.DTOs;
 using BlockChainAppMvc.BusinessLayer.Abstract;
 using Core.Entities.BlockChain.Entities;
 using Core.Utilities.Results;
+using Microsoft.AspNetCore.Http;
+using BlockChainAppMvc.Core.Entities.Concrate;
+using Core.Utilities.Security.Jwt;
+using BlockChainAppMvc.ViewModels;
 
 namespace BlockChainAppMvc.Controllers
 {
@@ -78,8 +82,11 @@ namespace BlockChainAppMvc.Controllers
         }
         public IActionResult Login()
         {
+            HttpContext.Session.Clear();
             return View();
         }
+
+
         [HttpPost]
         public ActionResult Login(UserForLoginDto userForLoginDto)
         {
@@ -90,24 +97,135 @@ namespace BlockChainAppMvc.Controllers
             }
 
             //Session eklenecek
+           
             var result = _authService.CreateAccessToken(userToLogin.Data);
             if (result.Success)
             {
 
-                return View();
+                HttpContext.Session.SetString("token",result.Data.Token);
+                string userId = Convert.ToString(userToLogin.Data.Id);
+                HttpContext.Session.SetString("userId", userId);
+                return View("Views/Home/Index.cshtml");
+                
             }
 
             return BadRequest(result.Message);
         }
+
+
+        [HttpPost("/coinAmountBuy")]
+        public IActionResult coinAmountBuy(int coinId, decimal amount)
+        {
+            //int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            //Coin coinBuy = _coinService.GetById(coinId).Data;
+            //_blockChainService.AddBlock(coinBuy.BlockId);
+            ////int walletId = _walletService.GetByUserId(userId).Data.walletId;
+
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            var coinBuy = _coinService.GetById(coinId).Data;
+            _blockChainService.AddBlock(coinBuy.blockId, amount);
+
+      
+            var wallet= _walletService.GetByUserId(userId).Data;
+
+
+            wallet.balance+= coinBuy.coinValue * amount;
+            _walletService.Update(wallet);
+            
+
+            return Redirect("/Home/Trade");
+        }
+
+        [HttpPost("/CoinAmountSell")]
+        public IActionResult CoinAmountSell(int coinId, int amount)
+        {
+            Coin coinSell = _coinService.GetById(coinId).Data;
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            _blockChainService.AddBlock(coinSell.blockId, amount);
+            var wallet = _walletService.GetByUserId(userId).Data;
+            wallet.balance -= coinSell.coinValue * amount;
+            _walletService.Update(wallet);
+            return Redirect("/Home/Trade");
+        }
+
+
         public IActionResult Trade()
         {
+            var coins = _coinService.GetAll();
+           
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            var wallet = _walletService.GetByUserId(userId).Data;
+            List<Coin> _coins = coins.Data;
+            
+            CoinWalletModel coinwallet = new CoinWalletModel()
+            {
+                Coins = _coins,
+                Wallets = wallet
+            };
+           
+
+
+            //_coins
+            return View(coinwallet);
+        }
+
+        [HttpGet]
+        public IActionResult Wallet()
+        {
+            //int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            //var user=_userService.Get(userId).Data;
+            //decimal coinAmount=0;
+            //string coinName;
+            
+
+            //var blockchains = user.Wallet.Blockchains;
+            
+            //foreach (var item in blockchains)
+            //{
+            // var block=  item.Blocks;
+            //    foreach (var blocks in block)
+            //    {
+            //         coinAmount = blocks.coinAmount;
+                    
+            //        foreach (var coin in block)
+            //        {
+            //            coinName = coin.Data;
+            //        }
+            //    }
+            //}
+
+           
+
             return View();
         }
 
+
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Register(UserForRegisterDto userForRegisterDto)
+        {
+            var userToRegister = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
+            if (!userToRegister.Success)
+            {
+                return BadRequest(userToRegister.Message);
+            }
+
+            //Session eklenecek
+            var result = _authService.CreateAccessToken(userToRegister.Data);
+            if (result.Success)
+            {
+                //HttpContext.Session.SetString("userId", userToLogin.Data.Id.ToString());
+                return View();
+            }
+
+            return Redirect("Login");
+        }
+
         public IActionResult CoinsList()
         {
             return View(_coinService.GetAll().Data);
@@ -187,9 +305,9 @@ namespace BlockChainAppMvc.Controllers
 
 
         [HttpPost("/addBlockChain")]
-        public IActionResult addBlockChain(int id)
+        public IActionResult addBlockChain(int id, decimal amount)
         {
-            var result = _blockChainService.AddBlock(id);
+            var result = _blockChainService.AddBlock(id, amount);
 
             if (!result.Success)
             {

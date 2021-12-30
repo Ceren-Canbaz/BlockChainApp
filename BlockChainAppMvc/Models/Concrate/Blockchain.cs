@@ -12,12 +12,13 @@ namespace Core.Entities.BlockChain.Entities
         public Blockchain()
         {
             Blocks = new List<Block>();
+            Coin = new Coin();
         }
 
         public int id { get; set; }
 
         public List<Block> Blocks { get; set; }
         public int walletId { get; set; }
-
+        public Coin Coin { get; set; }
     }
 }

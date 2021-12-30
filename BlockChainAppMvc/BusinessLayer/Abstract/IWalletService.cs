@@ -13,9 +13,9 @@ namespace BlockChainAppMvc.Business_Layer.Abstract
     {
         IDataResult<List<Wallet>> GetAll();
         //IDataResult<Wallet> GetById(int walletId);
-        //IResult Add(Wallet wallet);
+        IResult Add(Wallet wallet);
         //IResult Delete(Wallet wallet);
-        //IResult Update(Wallet wallet);
+       IResult Update(Wallet wallet);
 
         //IDataResult<List<WalletDto>> GetAllDetails();
         //IDataResult<List<WalletDto>> GetAllDetailsByUserId(int userId);
@@ -24,7 +24,7 @@ namespace BlockChainAppMvc.Business_Layer.Abstract
         //IResult VerifyWallet(Wallet wallet);
 
         //IResult AddCoinToWallet();
-        //IDataResult<Wallet> GetByUserId(int userId);
+        IDataResult<Wallet> GetByUserId(int userId);
 
     }
 }

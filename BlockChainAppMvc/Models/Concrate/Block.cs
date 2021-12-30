@@ -16,8 +16,9 @@ namespace Core.Entities.BlockChain.Entities
         public string Hash { get; set; }
         public string Data { get; set; }
         public int blockChainId { get; set; }
-        public List<Coin> Coins { get; set; }
+        public decimal coinAmount { get; set; }
 
+       
     }
 }
 

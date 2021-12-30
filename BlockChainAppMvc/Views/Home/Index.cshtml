@@ -1,5 +1,18 @@
-﻿@{
+﻿@model IEnumerable<BlockChainAppMvc.Models.Coin>
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
     ViewData["Title"] = "Home Page";
+
+    if (HttpContextAccessor.HttpContext.Session.GetString("token") != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 
 <div class="jumbotron jumbotron-fluid bg-dark">
@@ -26,10 +39,9 @@
     <div class="row">
         <div class="col mt-3">
             <div class="card text-dark mb-3" style="max-width: 18rem;">
-                <div class="card-header"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png" style="width: 50px" class="card-img-top" alt="resim bulunamad覺"> BTC/TRY</div>
-                <div class="card-body">
-                    <h5 class="card-title">Secondary card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class="card-header"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png" style="width: 50px" class="card-img-top" alt="resim bulunamad覺"> BNB/TRY</div>
+                <div class="card-body"> 
+                    <h5 class="card-title">DEĞER: 6.502,60 TRY</h5>
                 </div>
             </div>
         </div>
@@ -40,8 +52,7 @@
             <div class="card text-dark mb-3" style="max-width: 18rem;">
                 <div class="card-header">  <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" style="width: 50px" class="card-img-top" alt="resim bulunamad覺"> BTC/TRY</div>
                 <div class="card-body">
-                    <h5 class="card-title">Secondary card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">DEĞER: 586.571,35 TRY</h5>
                 </div>
             </div>
         </div>
@@ -50,8 +61,7 @@
             <div class="card text-dark mb-3" style="max-width: 18rem;">
                 <div class="card-header"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png" style="width: 50px" class="card-img-top" alt="resim bulunamad覺"> ETH/TRY</div>
                 <div class="card-body">
-                    <h5 class="card-title">Secondary card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">DEĞER: 47,409.04 TRY</h5>
                 </div>
             </div>
         </div>
@@ -60,8 +70,7 @@
             <div class="card text-dark mb-3" style="max-width: 18rem;">
                 <div class="card-header"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1975.png" style="width: 50px" class="card-img-top" alt="resim bulunamad覺"> LINK/TRY</div>
                 <div class="card-body">
-                    <h5 class="card-title">Secondary card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">DEĞER: ₺257.78 TRY</h5>
                 </div>
             </div>
         </div>
@@ -80,26 +89,28 @@
         <div class="row">
             <div class="col-sm-8">
                 <h2>BİZ KİMİZ ?</h2>
-                <h4> ##, token dünyasına açılan portalınızdır.</h4>
-                <p>Teknoloji yenidir ve sürekli gelişmektedir. ## bir rehbere sahip olmanıza yardımcı olur.
-                ##,gelişen bir dijital ekonomi,sizler çevrimiçi para kazanmak için cesur yeni yollar ararken sizlere eşlik eder ve çok daha fazlasını inşa ederek sizlere güvenilir bir hizmet sunar.
-                Dalış yapmak istiyorsanız yapmanızı önerdiğimiz şey burada.</p>
+                <h4> SCUBA, token dünyasına açılan portalınızdır.</h4>
+                <p>
+                    SCUBA bir rehbere sahip olmanıza yardımcı olur.
+                    SCUBA,sizler çevrimiçi para kazanmak için cesur yeni yollar ararken sizlere eşlik eder ve çok daha fazlasını inşa ederek sizlere güvenilir bir hizmet sunar.
+                    Dalış yapmak istiyorsanız bulunmanızı önerdiğimiz yer burası.
+                </p>
             </div>
             <div class="col-sm-4">
                 <img src="https://cdn-icons-png.flaticon.com/512/3800/3800720.png" style=" height: 150px; width: 200px" class="card-img-top" alt="resim bulunamad覺">
             </div>
         </div>
     </div>
-    
+
     <div class="container-fluid bg-grey">
         <div class="row">
             <div class="col-sm-4">
                 <img src="https://cdn-icons.flaticon.com/png/512/5805/premium/5805576.png?token=exp=1640218911~hmac=8bf1b46f3e94f40cde0fc3da7539e5fd" style=" height: 250px; width: 250px" class="card-img-top" alt="resim bulunamad覺">
             </div>
             <div class="col-sm-8">
-                <h2>Our Values</h2>
-                <h4><strong>MISSION:</strong> Our mission lorem ipsum..</h4>
-                <p><strong>VISION:</strong> Our vision Lorem ipsum..</p>
+                <h2>MİSYONUMUZ</h2>
+                <h4> Küresel Özgürlük.</h4>
+                <p>Vizyonumuz, paranın özgürlüğünü küresel olarak arttırmaktır. İnanıyoruz ki, bu özgürlüğü yayarak, dünyanın her yerinden hayatları önemli ölçüde daha iyiye götürebiliriz.</p>
             </div>
         </div>
     </div>

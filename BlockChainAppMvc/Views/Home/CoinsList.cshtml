@@ -1,24 +1,36 @@
 ﻿@model IEnumerable<BlockChainAppMvc.Models.Coin>
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 @{
     ViewData["Title"] = "CoinsList";
+    
+    if (HttpContextAccessor.HttpContext.Session.GetString("token") != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+            else
+            {
+                Layout = "~/Views/Shared/_Layout.cshtml";
+            }
 }
 
 
 <div class="container mt-2">
-    <table class="table table-dark table-striped">
+    <table class="table table-light  table-striped">
         <thead>
+
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.coinName)
+                    Coin Adı
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.coinValue)
+                    Değeri
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.changePerDay)
+                    Değişim
                 </th>
-                <th></th>
+                
             </tr>
         </thead>
 
@@ -34,11 +46,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.changePerDay)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.coinId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.coinId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.coinId">Delete</a>
                     </td>
                 </tr>
             }

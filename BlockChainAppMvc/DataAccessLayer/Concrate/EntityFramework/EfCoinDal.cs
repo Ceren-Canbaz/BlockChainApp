@@ -15,6 +15,6 @@ namespace DataAccess.Concrate.EntityFramework
 {
     public class EfCoinDal : EfEntityRepositoryBase<Coin, BlockChainAppContext>, ICoinDao
     {
-
+        
     }
 }

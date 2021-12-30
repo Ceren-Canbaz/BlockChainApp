@@ -2,6 +2,8 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 /*F0E5CF krem F7F6F2 açık gri C8C6C6 gri 4B6587 mavi*/
+
+
 header nav {
     background-color: #F7F6F2;
 }
@@ -43,6 +45,7 @@ a {
 -------------------------------------------------- */
 html {
     font-size: 14px;
+   
 }
 
 @media (min-width: 768px) {

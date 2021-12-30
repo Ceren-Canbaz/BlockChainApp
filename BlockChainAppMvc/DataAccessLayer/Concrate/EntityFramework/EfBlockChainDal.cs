@@ -17,8 +17,9 @@ namespace BlockChainAppMvc.DataAccessLayer.Concrate.EntityFramework
         {
             using (BlockChainAppContext context = new BlockChainAppContext())
             {
-                context.Blocks.Include(b => b.Coins);
-                var result = context.BlockChains.Include(b => b.Blocks).ToList();
+                context.BlockChains.Include(b => b.Blocks).ToList();
+                var result = context.BlockChains.Include(b => b.Coin).ToList();
+
                 return result.ToList();
             }
         }

@@ -1,48 +1,69 @@
-﻿@model IEnumerable<BlockChainAppMvc.Models.Coin>
+﻿@model IEnumerable<Core.Entities.BlockChain.Entities.Block>
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 
 @{
     ViewData["Title"] = "Wallet";
+
+    if (HttpContextAccessor.HttpContext.Session.GetString("token") != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
-
-<div class="container mt-2">
-    <table class="table table-dark table-striped">
-        <thead>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeStamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PreviousHash)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hash)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.coinAmount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.coinName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.coinValue)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.changePerDay)
-                </th>
-                <th></th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeStamp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PreviousHash)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hash)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.coinAmount)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
             </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.coinName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.coinValue)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.changePerDay)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.coinId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.coinId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.coinId">Delete</a>
-                    </td>
-                </tr>
-            }
-
-        </tbody>
-
-    </table>
-</div>
+        }
+    </tbody>
+</table>

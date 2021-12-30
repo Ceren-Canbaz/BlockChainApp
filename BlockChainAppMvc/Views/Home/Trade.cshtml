@@ -1,137 +1,86 @@
-﻿
+﻿@model BlockChainAppMvc.ViewModels.CoinWalletModel
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 @{
+    var coins = Model;
     ViewBag.Title = "Trade";
-    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    if (HttpContextAccessor.HttpContext.Session.GetString("token") != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 
 <div class="container">
-    <div class="row mt-3">
-        <div class="col-sm-6">
-            <div class="card">
+    
+    <button style="cursor:default; margin-top:2rem;" class="btn btn-warning"> CÜZDAN:  @coins.Wallets.balance</button>
+        
+            <div class="card" style="margin-top:4rem;">
                 <div class="card-body">
                     <h5 class="card-title">SATIN AL</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text">Almak istediğiniz coini ve miktarını seçiniz.</p>
                     <div class="input-group">
-                        <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                        <button class="btn btn-outline-secondary" type="button" onclick="alert('İşleminiz gerçekleşti!'); return true">BUY</button>
+
+                        <form action="/coinAmountBuy" method="POST">
+
+                            <select data-val="true" data-val-range="A user type must be selected." data-val-range-max="2" data-val-range-min="1" data-val-required="The UserType field is required." id="UserType" name="coinId" class="input-validation-error">
+                                @foreach (var coin in coins.Coins)
+                                {
+                                    // Coin, coinAmount coin
+
+                                    <option value="@coin.coinId"> @coin.coinName @*@Html.DisplayNameFor(model => model.coinName)*@</option>
+                                }
+
+                            </select>
+
+                            <input  value ="" type="number" name="amount" />
+                            <input type="submit" value="BUY" class="btn btn-outline-secondary" />
+
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card">
+       
+      
+            <div class="card" style="margin-top:3rem;">
                 <div class="card-body">
                     <h5 class="card-title">SAT</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text">Satmak istediğiniz coini ve miktarını seçiniz.</p>
                     <div class="input-group">
-                        <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                            <option selected>Choose...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                        <button class="btn btn-outline-secondary" type="button" onclick="alert('İşleminiz gerçekleşti!'); return true">SALE</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <form action="/CoinAmountSell" method="POST">
 
+                            <select data-val="true" data-val-range="A user type must be selected." data-val-range-max="2" data-val-range-min="1" data-val-required="The UserType field is required." id="UserType" name="coinId" class="input-validation-error">
+                                @foreach (var coin in coins.Coins)
+                                {
+                                    // Coin, coinAmount coin
 
-    <br />
-    <br />
-    <br />
-    <br />
+                                    <option value="@coin.coinId"> @coin.coinName @*@Html.DisplayNameFor(model => model.coinName)*@</option>
+                                }
 
-
-    <div class="row mt-3" style="margin-bottom:5rem; margin-top:5rem;">
-        <div class="col-sm-5">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Dönüştür</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <div class="input-group">
-                        <div class="form-group center">
-                            <label for="">Enter Value:</label>
-                            <input type="number" class="amount form-control" placeholder="Enter value" min="1">
-                        </div>
-                        <div class="form-group inline-block">
-                            <label for="">From currency:</label>
-                            <select class="currency-list form-control" onclick="exchangeCurrency()" style="margin-left:0.5rem;">
-                                <option>--Select--</option>
                             </select>
-                        </div>
+
+
+                            
+                            <input  type="number" value="amount" />
+
+                            <input type="submit" value="SELL" class="btn btn-outline-secondary" />
+
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
+       
+  
 
-        <div class="col-sm-2">
-            <img src="https://cdn-icons-png.flaticon.com/512/4950/4950398.png" style="width:150px; height:150px; margin-top:2rem; ">
-        </div>
 
-        <div class="col-sm-5">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">SAT</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <div class="input-group">
-                        <div class="form-group inline-block">
-                            <label>To currency:</label>
-                            <select class="currency-list form-control" onclick="exchangeCurrency()">
-                                <option>--Select--</option>
-                            </select>
-                        </div>
+    <br />
+    <br />
+    <br />
+    <br />
 
-                        <p class="results">0</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
-
-    @*<div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="panel panel-primary text-center">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Currency Converter</h4>
-                        </div>
-                        <div class="error">
-                            Please enter numeric value
-                        </div>
-                        <div class="panel-body">
-                            <form class="form-vertical">
-
-                                <div class="form-group center">
-                                    <label for="">Enter Value:</label>
-                                    <input type="number" class="amount form-control" placeholder="Enter value" min="1">
-                                </div>
-
-
-                                <div class="form-group inline-block">
-                                    <label for="">From currency:</label>
-                                    <select class="currency-list form-control" onclick="exchangeCurrency()">
-                                        <option>--Select--</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group inline-block">
-                                    <label>To currency:</label>
-                                    <select class="currency-list form-control" onclick="exchangeCurrency()">
-                                        <option>--Select--</option>
-                                    </select>
-                                </div>
-                            </form>
-                            <p class="results">0</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>*@

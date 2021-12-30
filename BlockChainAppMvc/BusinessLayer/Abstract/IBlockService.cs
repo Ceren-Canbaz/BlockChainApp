@@ -12,6 +12,7 @@ namespace BlockChainAppMvc.BusinessLayer.Abstract
         IDataResult<List<Block>> GetAll();
         IDataResult<Block> GetById(int blockId);
         IResult FirstAddCoin(string data, decimal value);
+        //IResult AddCoin(Block block);
         IResult Delete(Block block);
         IResult Update(Block block);
     }
