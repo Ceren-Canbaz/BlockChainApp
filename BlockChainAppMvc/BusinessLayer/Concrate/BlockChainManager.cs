@@ -33,7 +33,7 @@ namespace BlockChainAppMvc.BusinessLayer.Concrate
         public IResult AddBlock(int blockId, decimal amount)
         {
             
-            var latestBlock = _blockDao.Get(b => b.id == blockId );
+            var latestBlock = _blockDao.Get(b => b.id == blockId);
             Block newBlock = new Block
             {
                 PreviousHash = latestBlock.Hash,
